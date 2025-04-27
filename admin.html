@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin - Adicionar Arquivo</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 30px;
+      max-width: 600px;
+      margin: auto;
+    }
+    input, select, textarea {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    textarea {
+      height: 150px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Gerar Código do Bloco</h2>
+  <input type="text" id="nome" placeholder="Nome do Produto">
+  <input type="text" id="img" placeholder="URL da Imagem (300x200)">
+  <input type="text" id="link" placeholder="ID do Google Drive">
+  <select id="categoria">
+    <option>Caixas</option>
+    <option>Alto falantes</option>
+    <option>Cornetas</option>
+    <option>Tweeter</option>
+  </select>
+  <button onclick="gerar()">Gerar Bloco</button>
+  <textarea id="output" readonly placeholder="O código HTML aparecerá aqui..."></textarea>
+
+  <script>
+    function gerar() {
+      const nome = document.getElementById("nome").value;
+      const img = document.getElementById("img").value;
+      const link = document.getElementById("link").value;
+      const cat = document.getElementById("categoria").value;
+
+      const html = `
+<div class="card" data-title="${nome}" data-category="${cat}">
+  <img src="${img}" alt="${nome}">
+  <h2>${nome}</h2>
+  <a href="https://drive.google.com/uc?export=download&id=${link}" target="_blank" class="btn">Download</a>
+</div>`;
+
+      document.getElementById("output").value = html.trim();
+    }
+  </script>
+</body>
+</html>
